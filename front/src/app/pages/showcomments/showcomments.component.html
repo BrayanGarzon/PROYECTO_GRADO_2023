@@ -1,0 +1,44 @@
+<div *ngIf="site">
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+        <h1>Categoria: {{ site.category.name }}</h1>
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+        <h4><!--Nombre del sitio turistico: -->{{ site.name }}</h4>
+
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+        <h4>Precio: {{ site.price | currency }}</h4>
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+
+        <h4>Calificacion: {{ site.quality | number }}</h4>
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: left; margin-top: 30px; margin-left: 20%;">
+
+        <img src="{{ site.image }}" alt="" class="place__img">
+    </div>
+</div>
+
+
+
+<div
+    style="width: 60%; display: block; margin: 0 auto; align-items: center; justify-content: center; margin-top: 30px;" *ngIf="site">
+    <h2>Comentarios</h2>
+    <div
+    style="width: 60%; margin: 0 auto; align-items: center; justify-content: center; margin-top: 30px;" *ngFor="let comment of comments">
+
+    <div class="chat-card">
+        <div class="chat-content">
+            <h4>Usuario: {{ comment.user?.fake_name || 'Usuario desconocido' }}</h4>
+            <p>Mensaje: {{ comment.name }}</p>
+            <p>Puntuacion: {{ comment.quality | number:'.1' }}</p>
+        </div>
+    </div>
+</div>
+    <a [routerLink]="['/discover/comment/sites/', site.id]" class="button" style="width: 100%; text-align: center;">Haz un comentario</a>
+</div>

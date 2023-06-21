@@ -1,0 +1,43 @@
+<section id="subscribe_section" class="subscribe section">
+    <div class="subscribe__bg">
+        <div class="subscribe__container container">
+            <h2 class="section__title subscribe__title">Déjanos tu inquietud <br> Te respondemos de inmediato</h2>
+            <p class="subscribe__description">
+                Daremos solucion a tus peticiones
+            </p>
+
+            <form id="formulario" (ngSubmit)="sendEmail()" [formGroup]="formEmail" class="subscribe__form"
+                method="POST">
+
+                <input type="text" placeholder="Nombre Completo - Full Name" class="subscribe__input" name="full_name"
+                    id="full_name" formControlName="full_name" required>
+                <small
+                    *ngIf="formEmail.controls['full_name'].errors?.['required'] && formEmail.controls['full_name'].touched"
+                    class="p-error block" style="color: red;">full name is required.</small>
+                <hr class="hr">
+
+                <input type="email" name="email" id="email" placeholder="Email" class="subscribe__input"
+                    formControlName="email" required>
+                <small *ngIf="formEmail.controls['email'].errors?.['required'] && formEmail.controls['email'].touched"
+                    class="p-error block" style="color: red;">email is required.</small>
+                <hr class="hr">
+                <br>
+
+                <textarea name="message" id="message" class="form_input--message" cols="30" rows="10"
+                    placeholder="Escribe tu mensaje" required formControlName="message"></textarea>
+                <small
+                    *ngIf="formEmail.controls['message'].errors?.['required'] && formEmail.controls['message'].touched"
+                    class="p-error block" style="color: red;">message is required.</small>
+                <hr class="hr">
+
+
+                <div class="container-button-enviar">
+                    <button class="button" type="submit">
+                        Enviar
+                    </button>
+                    <input type="reset" value="Borrar" class="button-clear-content">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

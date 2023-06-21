@@ -1,0 +1,62 @@
+<div *ngIf="site">
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+        <h1>Categoria: {{ site.category.name }}</h1>
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+        <h4>{{ site.name }}</h4>
+
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+        <h4>Precio: {{ site.price | currency }}</h4>
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+
+        <h4>Calificacion: {{ site.quality | number }}</h4>
+    </div>
+    <div
+        style="width: auto; margin: 0 auto; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+
+        <img src="{{ site.image }}" alt="" class="place__img">
+    </div>
+</div>
+<section id="subscribe_section" style="padding-top: 3rem;" class="subscribe section">
+    <div class="subscribe__bg">
+        <div class="subscribe__container container">
+            <h2 class="section__title subscribe__title">Enviar comentarios de este sitio </h2>
+
+            <form id="formulario" (ngSubmit)="sendComment()" [formGroup]="formComment" class="subscribe__form"
+                method="POST">
+
+                <textarea name="message" id="message" class="form_input--message" cols="30" rows="10"
+                    placeholder="Escribe tu mensaje" required formControlName="message"></textarea>
+                <small
+                    *ngIf="formComment.controls['message'].errors?.['required'] && formComment.controls['message'].touched"
+                    class="p-error block" style="color: red;">message is required.</small>
+                <hr class="hr">
+
+                <input type="number" formControlName="quality" name="quality" placeholder="quality"
+                    class="subscribe__input" required>
+                <small
+                    *ngIf="formComment.controls['quality'].errors?.['required'] && formComment.controls['quality'].touched"
+                    class="p-error block" style="color: red;">quality is required.</small>
+                <small
+                    *ngIf="formComment.controls['quality'].errors?.['min'] && formComment.controls['quality'].touched"
+                    class="p-error block" style="color: red;">quality min is 0.</small>
+                <small
+                    *ngIf="formComment.controls['quality'].errors?.['max'] && formComment.controls['quality'].touched"
+                    class="p-error block" style="color: red;">quality max is 5.</small>
+                <hr class="hr">
+                <br>
+
+
+                <div class="container-button-enviar">
+                    <button class="button" type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

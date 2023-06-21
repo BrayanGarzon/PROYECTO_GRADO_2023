@@ -1,0 +1,29 @@
+<section id="subscribe_section" class="subscribe section">
+    <div class="subscribe__bg">
+        <div class="subscribe__container container">
+            <h2 class="section__title subscribe__title">Inicia sesion aqui!</h2>
+
+            <form id="formulario" (ngSubmit)="saveLogin()" [formGroup]="formLogin" class="subscribe__form" method="POST">
+
+                <input type="email" formControlName="email" placeholder="Correo de usuario" class="subscribe__input" name="email" id="email"
+                    required>
+                    <small
+                    *ngIf="formLogin.controls['email'].errors?.['required'] && formLogin.controls['email'].touched"
+                    class="p-error block" style="color: red;">email is required.</small>
+                <hr class="hr">
+
+                <input type="password" formControlName="password" name="password" placeholder="password" class="subscribe__input" required>
+                <small
+                    *ngIf="formLogin.controls['password'].errors?.['required'] && formLogin.controls['password'].touched"
+                    class="p-error block" style="color: red;">password is required.</small>
+                <hr class="hr">
+                <br>
+
+
+                <div class="container-button-enviar">
+                    <button class="button" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
